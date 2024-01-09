@@ -77,50 +77,50 @@ If you encounter any of these errors, refer to the Helius documentation for furt
 
 Our SDK is designed to give you a seamless experience when building on Solana. We've separated the core functionality into various segments.
 
-[**DAS Digital Asset Standard**](#das-digital-asset-standard)
+[**DAS API**](#das-api-digital-asset-standard)
 
-Enables complex operations and interactions with Helius Decentralized Autonomous Services through a range of API methods focused on digital asset management.
+Comprehensive and performant API for tokens, NFTs, and compressed NFTs on Solana.
 
-  - [`getAsset()`](#getAsset): Retrieve information about a specific digital asset.
+  - [`getAsset()`](#getAsset): Get an asset by its ID. Note: we've enhanced this with our CDN to ensure speedy token metadata retrieval.
   - [`getAssetBatch()`](#getAssetBatch): Fetch data for multiple assets simultaneously.
-  - [`getSignaturesForAsset()`](#getSignaturesForAsset): Obtain transaction signatures related to a particular asset.
-  - [`searchAssets()`](#searchAssets): Enables searching for assets based on various criteria.
-  - [`getAssetProof()`](#getAssetProof): Get proof of authenticity or ownership for an asset.
-  - [`getAssetsByOwner()`](#getAssetsByOwner): List assets owned by a specific wallet or entity.
-  - [`getAssetsByGroup()`](#getAssetsByGroup): Find assets belonging to a certain group.
-  - [`getAssetsByCreator()`](#getAssetsByCreator): Access assets created by a specific user or entity.
-  - [`getAssetsByAuthority()`](#getAssetsByAuthority): Identify assets under a specific authority.
+  - [`getSignaturesForAsset()`](#getSignaturesForAsset): Get a list of transaction signatures related to a compressed asset.
+  - [`searchAssets()`](#searchAssets): Search for assets by a variety of parameters. Very useful for token-gating!
+  - [`getAssetProof()`](#getAssetProof): Get a Merkle proof for a compressed asset by its ID.
+  - [`getAssetsByOwner()`](#getAssetsByOwner): Get a list of assets owned by an address. This is the fastest way to get all the NFTs and fungible tokens that are owned by a wallet on Solana.
+  - [`getAssetsByGroup()`](#getAssetsByGroup): Get a list of assets by a group key and value. This endpoint is very useful for getting the mint list for NFT Collections.
+  - [`getAssetsByCreator()`](#getAssetsByCreator): Get a list of assets with a specific authority.
+  - [`getAssetsByAuthority()`](#getAssetsByAuthority): Get a list of assets created by an address.
 
-[**Mint**](#mint)
+[**Mint API**](#mint-api)
 
-Central hub for managing Compressed NFT minting, authority assignments, and collection operations within Helius's Compressed Mint API.
+The easiest way to mint compressed NFTs at scale.
 
-- [`getMintlist()`](#getMintlist): Access the list of mintable NFTs.
+- [`getMintlist()`](#getMintlist)
 - [`mintCompressedNft()`](#mintCompressedNft): Mint a new compressed NFT. 
-- [`delegateCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Delegate authority over a collection.
-- [`revokeCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Revoke delegated authority from a collection.
+- [`delegateCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Delegates collection authority to a new address.
+- [`revokeCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Revokes collection authority from an address.
 
 [**Webhooks**](#webhooks)
 
 Provides methods for setting up, editing, and managing webhooks, crucial for real-time event tracking and notifications in the Helius ecosystem.
 
-- [`createWebhook()`](#createWebhook): Set up a new webhook for event tracking.
-- [`editWebhook()`](#editWebhook): Modify the settings of an existing webhook.
-- [`deleteWebhook()`](#deleteWebhook): Remove a previously set up webhook.
-- [`getWebhookByID()`](#getWebhookByID): Retrieve details of a webhook using its ID.
-- [`getAllWebhooks()`](#getAllWebhooks): List all configured webhooks.
-- [`createCollectionWebhook()`](#createCollectionWebhook): Establish a webhook specifically for a collection.
+- [`createWebhook()`](#createWebhook): Creates a new webhook with the provided request.
+- [`editWebhook()`](#editWebhook): Edits an existing webhook by its ID with the provided request.
+- [`deleteWebhook()`](#deleteWebhook): Deletes a webhook by its ID.
+- [`getWebhookByID()`](#getWebhookByID): Retrieves a single webhook by its ID.
+- [`getAllWebhooks()`](#getAllWebhooks): Retrieves a list of all webhooks.
+- [`createCollectionWebhook()`](#createCollectionWebhook)
 
 [**Helper methods**](#helper-methods)
 
 Offers additional tools for various Solana-related tasks like analyzing blockchain throughput and tracking stake accounts and SPL token holders.
 
-- [`getCurrentTPS()`](#getCurrentTPS): Analyze the transactions per second on the Solana blockchain.
-- [`airdrop()`](#airdrop): Facilitate airdropping Solana devnet tokens.
-- [`getStakeAccounts()`](#getStakeAccounts): Retrieve information on Solana stake accounts.
-- [`getTokenHolders()`](#getTokenHolders): Identify holders of specific SPL tokens.
+- [`getCurrentTPS()`](#getCurrentTPS): Returns the current transactions per second (TPS) rate — including voting transactions.
+- [`airdrop()`](#airdrop): Request an allocation of lamports to the specified address
+- [`getStakeAccounts()`](#getStakeAccounts): Returns all the stake accounts for a given public key.
+- [`getTokenHolders()`](#getTokenHolders): Returns all the token accounts for a given mint address (ONLY FOR SPL TOKENS).
 
-## DAS (Digital Asset Standard)
+## DAS API (Digital Asset Standard)
 
 Read more about the DAS API from our docs, [here](https://docs.helius.dev/solana-compression/digital-asset-standard-das-api).
 
