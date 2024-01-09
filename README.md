@@ -97,8 +97,8 @@ Central hub for managing Compressed NFT minting, authority assignments, and coll
 
 - [`getMintlist()`](#getMintlist): Access the list of mintable NFTs.
 - [`mintCompressedNft()`](#mintCompressedNft): Mint a new compressed NFT. 
-- [`delegateCollectionAuthority()`](#delegateCollectionAuthority): Delegate authority over a collection.
-- [`revokeCollectionAuthority()`](#delegateCollectionAuthority): Revoke delegated authority from a collection.
+- [`delegateCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Delegate authority over a collection.
+- [`revokeCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Revoke delegated authority from a collection.
 
 [**Webhooks**](#webhooks)
 
@@ -113,9 +113,8 @@ Provides methods for setting up, editing, and managing webhooks, crucial for rea
 
 [**Helper methods**](#helper-methods)
 
-Offers additional tools for various Solana-related tasks like analyzing blockchain throughput, facilitating airdrops, and tracking stake accounts and SPL token holders.
+Offers additional tools for various Solana-related tasks like analyzing blockchain throughput and tracking stake accounts and SPL token holders.
 
-- [`connection`](#connection): Incorporates all commonly used methods from Solana-Web3.js
 - [`getCurrentTPS()`](#getCurrentTPS): Analyze the transactions per second on the Solana blockchain.
 - [`airdrop()`](#airdrop): Facilitate airdropping Solana devnet tokens.
 - [`getStakeAccounts()`](#getStakeAccounts): Retrieve information on Solana stake accounts.
@@ -484,7 +483,6 @@ helius.editWebhook(
 
 ### appendAddressesToWebhook()
 
-<br />
 For convenience, we've added a method to let you simply append new addresses to an existing webhook:
 
 ```ts
@@ -553,24 +551,6 @@ Note that the Collections.ABC enum references the collection query for this coll
 
 We provide a variety of helper methods to help make Solana RPCs easier to work with.
 
-### connection
-
-Incorporates all commonly-used methods from Solana-Web3.js Provider using your Helius RPC. Ideal for managing connections and performing standard Solana blockchain operations. For a list of all the Methods see: https://docs.solana.com/api/http
-
-```ts
-import { Helius } from "helius-sdk";
-
-// Replace YOUR_API_KEY with the API key from your Helius dashboard
-const helius = new Helius("YOUR_API_KEY"); 
-
-const getBlockHeight = async () => {
-  const response = await helius.connection.getBlockHeight();
-  console.log(response);
-}
-
-getBlockHeight();
-```
-
 ### getCurrentTPS()
 
 ```ts
@@ -612,6 +592,24 @@ import { Helius } from "helius-sdk";
 const helius = new Helius("YOUR_API_KEY");
 
 const response = await helius.rpc.getTokenHolders("<token mint address>");
+```
+
+## helius.connection
+
+Incorporates all commonly-used methods from Solana-Web3.js Provider using your Helius RPC. Ideal for managing connections and performing standard Solana blockchain operations. For a list of all the Methods see: https://docs.solana.com/api/http
+
+```ts
+import { Helius } from "helius-sdk";
+
+// Replace YOUR_API_KEY with the API key from your Helius dashboard
+const helius = new Helius("YOUR_API_KEY"); 
+
+const getBlockHeight = async () => {
+  const response = await helius.connection.getBlockHeight();
+  console.log(response);
+}
+
+getBlockHeight();
 ```
 
 ## FAQ
