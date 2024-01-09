@@ -81,8 +81,8 @@ Our SDK is designed to give you a seamless experience when building on Solana. W
 
 Comprehensive and performant API for tokens, NFTs, and compressed NFTs on Solana.
 
-  - [`getAsset()`](#getAsset): Get an asset by its ID. Note: we've enhanced this with our CDN to ensure speedy token metadata retrieval.
-  - [`getAssetBatch()`](#getAssetBatch): Fetch data for multiple assets simultaneously.
+  - [`getAsset()`](#getAsset): Get an asset by its ID.
+  - [`getAssetBatch()`](#getAssetBatch): Get multiple assets by ID (up to 1k).
   - [`getSignaturesForAsset()`](#getSignaturesForAsset): Get a list of transaction signatures related to a compressed asset.
   - [`searchAssets()`](#searchAssets): Search for assets by a variety of parameters. Very useful for token-gating!
   - [`getAssetProof()`](#getAssetProof): Get a Merkle proof for a compressed asset by its ID.
@@ -95,21 +95,22 @@ Comprehensive and performant API for tokens, NFTs, and compressed NFTs on Solana
 
 The easiest way to mint compressed NFTs at scale.
 
-- [`getMintlist()`](#getMintlist)
 - [`mintCompressedNft()`](#mintCompressedNft): Mint a new compressed NFT. 
 - [`delegateCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Delegates collection authority to a new address.
 - [`revokeCollectionAuthority()`](#delegatecollectionauthority-and-revokecollectionauthority): Revokes collection authority from an address.
+- [`getMintlist()`](#getMintlist) Get all the tokens for an NFT collection.
 
 [**Webhooks**](#webhooks)
 
-Provides methods for setting up, editing, and managing webhooks, crucial for real-time event tracking and notifications in the Helius ecosystem.
+Provides methods for setting up, editing, and managing webhooks, crucial for listening to on-chain Solana events (e.g., sales, listings, swaps) and triggering actions when these events happen.
 
 - [`createWebhook()`](#createWebhook): Creates a new webhook with the provided request.
 - [`editWebhook()`](#editWebhook): Edits an existing webhook by its ID with the provided request.
+- [`appendAddressesToWebhook()`](#appendAddressesToWebhook): Append new addresses to an existing webhook.
 - [`deleteWebhook()`](#deleteWebhook): Deletes a webhook by its ID.
 - [`getWebhookByID()`](#getWebhookByID): Retrieves a single webhook by its ID.
 - [`getAllWebhooks()`](#getAllWebhooks): Retrieves a list of all webhooks.
-- [`createCollectionWebhook()`](#createCollectionWebhook)
+- [`createCollectionWebhook()`](#createCollectionWebhook) Create a new collection webhook with the provided request.
 
 [**Helper methods**](#helper-methods)
 
