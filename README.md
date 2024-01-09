@@ -71,46 +71,54 @@ When working with the Helius SDK, you may encounter several error codes. Below i
 
 If you encounter any of these errors, refer to the Helius documentation for further guidance, or reach out to the Helius support team for more detailed assistance.
 
-
 ## Using the Helius SDK
 
-The Helius SDK is a comprehensive toolset designed to simplify development on the Solana blockchain. It supports a range of namespaces, each tailored to specific functionalities within the Solana ecosystem and Helius services.
+Our SDK is designed to give you a seamless experience when building on Solana. We've separated the core functionality into various segments.
 
 [**DAS Digital Asset Standard**](#das-digital-asset-standard)
-  - [`getAsset()`](#getAsset) : Retrieve information about a specific digital asset.
-  - [`getAssetBatch()`](#getAssetBatch) : Fetch data for multiple assets simultaneously.
-  - [`getSignaturesForAsset()`](#getSignaturesForAsset) : Obtain transaction signatures related to a particular asset.
-  - [`searchAssets()`](#searchAssets) : Enables searching for assets based on various criteria.
-  - [`getAssetProof()`](#getAssetProof) : Get proof of authenticity or ownership for an asset.
-  - [`getAssetsByOwner()`](#getAssetsByOwner) : List assets owned by a specific wallet or entity.
-  - [`getAssetsByGroup()`](#getAssetsByGroup) : Find assets belonging to a certain group.
-  - [`getAssetsByCreator()`](#getAssetsByCreator) : Access assets created by a specific user or entity.
-  - [`getAssetsByAuthority()`](#getAssetsByAuthority) : Identify assets under a specific authority.
+
+Enables complex operations and interactions with Helius Decentralized Autonomous Services through a range of API methods focused on digital asset management.
+
+  - [`getAsset()`](#getAsset): Retrieve information about a specific digital asset.
+  - [`getAssetBatch()`](#getAssetBatch): Fetch data for multiple assets simultaneously.
+  - [`getSignaturesForAsset()`](#getSignaturesForAsset): Obtain transaction signatures related to a particular asset.
+  - [`searchAssets()`](#searchAssets): Enables searching for assets based on various criteria.
+  - [`getAssetProof()`](#getAssetProof): Get proof of authenticity or ownership for an asset.
+  - [`getAssetsByOwner()`](#getAssetsByOwner): List assets owned by a specific wallet or entity.
+  - [`getAssetsByGroup()`](#getAssetsByGroup): Find assets belonging to a certain group.
+  - [`getAssetsByCreator()`](#getAssetsByCreator): Access assets created by a specific user or entity.
+  - [`getAssetsByAuthority()`](#getAssetsByAuthority): Identify assets under a specific authority.
 
 [**Mint**](#mint)
 
-- [`getMintlist()`](#getMintlist) : Access the list of mintable NFTs.
-- [`mintCompressedNft()`](#mintCompressedNft) : Mint a new compressed NFT. 
-- [`mintApiAuthority()`](#mintApiAuthority) : Assign authority for NFT minting.
-- [`delegateCollectionAuthority()`](#delegateCollectionAuthority) : Delegate authority over a collection.
-- [`revokeCollectionAuthority()`](#revokeCollectionAuthority) : Revoke delegated authority from a collection.
+Central hub for managing Compressed NFT minting, authority assignments, and collection operations within Helius's Compressed Mint API.
+
+- [`getMintlist()`](#getMintlist): Access the list of mintable NFTs.
+- [`mintCompressedNft()`](#mintCompressedNft): Mint a new compressed NFT. 
+- [`mintApiAuthority()`](#mintApiAuthority): Assign authority for NFT minting.
+- [`delegateCollectionAuthority()`](#delegateCollectionAuthority): Delegate authority over a collection.
+- [`revokeCollectionAuthority()`](#revokeCollectionAuthority): Revoke delegated authority from a collection.
 
 [**Webhooks**](#webhooks)
 
-- [`createWebhook()`](#createWebhook) : Set up a new webhook for event tracking.
-- [`editWebhook()`](#editWebhook) : Modify the settings of an existing webhook.
-- [`deleteWebhook()`](#deleteWebhook) : Remove a previously set up webhook.
-- [`getWebhookByID()`](#getWebhookByID) : Retrieve details of a webhook using its ID.
-- [`getAllWebhooks()`](#getAllWebhooks) : List all configured webhooks.
-- [`createCollectionWebhook()`](#createCollectionWebhook) : Establish a webhook specifically for a collection.
+Provides methods for setting up, editing, and managing webhooks, crucial for real-time event tracking and notifications in the Helius ecosystem.
+
+- [`createWebhook()`](#createWebhook): Set up a new webhook for event tracking.
+- [`editWebhook()`](#editWebhook): Modify the settings of an existing webhook.
+- [`deleteWebhook()`](#deleteWebhook): Remove a previously set up webhook.
+- [`getWebhookByID()`](#getWebhookByID): Retrieve details of a webhook using its ID.
+- [`getAllWebhooks()`](#getAllWebhooks): List all configured webhooks.
+- [`createCollectionWebhook()`](#createCollectionWebhook): Establish a webhook specifically for a collection.
 
 [**Helper methods**](#helper-methods)
 
-- [`connection`](#connection) : Incorporates all commonly-used methods from Solana-Web3.js
-- [`getCurrentTPS()`](#getCurrentTPS) : Analyze the transactions per second on the Solana blockchain.
-- [`airdrop()`](#airdrop) : Facilitate airdropping Solana devnet tokens.
-- [`getStakeAccounts()`](#getStakeAccounts) : Retrieve information on Solana stake accounts.
-- [`getTokenHolders()`](#getTokenHolders) : Identify holders of specific SPL tokens.
+Offers additional tools for various Solana-related tasks like analyzing blockchain throughput, facilitating airdrops, and tracking stake accounts and SPL token holders.
+
+- [`connection`](#connection): Incorporates all commonly used methods from Solana-Web3.js
+- [`getCurrentTPS()`](#getCurrentTPS): Analyze the transactions per second on the Solana blockchain.
+- [`airdrop()`](#airdrop): Facilitate airdropping Solana devnet tokens.
+- [`getStakeAccounts()`](#getStakeAccounts): Retrieve information on Solana stake accounts.
+- [`getTokenHolders()`](#getTokenHolders): Identify holders of specific SPL tokens.
 
 ## DAS (Digital Asset Standard)
 
@@ -125,7 +133,7 @@ Get an asset by its ID.
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.getAsset({
   id: "F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk",
   displayOptions: {
@@ -135,7 +143,7 @@ const response = await helius.rpc.getAsset({
 console.log(response.grouping?.map((g) => g.collection_metadata?.name));
 ```
 
-### getAssetBatch
+### getAssetBatch()
 
 Get multiple assets by ID (up to 1k).
 
@@ -153,14 +161,14 @@ const response = await helius.rpc.getAssetBatch({
 console.log(response.map((x) => x.id));
 ```
 
-### **getSignaturesForAsset**
+### getSignaturesForAsset()
 
 Get a list of transaction signatures related to a compressed asset.
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.getSignaturesForAsset({
   id: "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss",
   page: 1,
@@ -168,14 +176,14 @@ const response = await helius.rpc.getSignaturesForAsset({
 console.log(response.items);
 ```
 
-### searchAssets
+### searchAssets()
 
 Search for assets by a variety of parameters. Very useful for token-gating!
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.searchAssets({
   ownerAddress: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
   compressed: true,
@@ -184,28 +192,28 @@ const response = await helius.rpc.searchAssets({
 console.log(response.items);
 ```
 
-### **getAssetProof**
+### getAssetProof()
 
 Get a merkle proof for a compressed asset by its ID.
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.getAssetProof({
   id: "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss",
 });
 console.log(response);
 ```
 
-### **getAssetsByOwner**
+### getAssetsByOwner()
 
 Get a list of assets owned by an address. This is the fastest way to get all the NFTs owned by a wallet on Solana.
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.getAssetsByOwner({
   ownerAddress: "86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY",
   page: 1,
@@ -213,14 +221,14 @@ const response = await helius.rpc.getAssetsByOwner({
 console.log(response.items);
 ```
 
-### **getAssetsByGroup**
+### getAssetsByGroup()
 
-Get a list of assets by a group key and value. This endpoint is very useful for getting the mintlist for NFT Collections.
+Get a list of assets by a group key and value. This endpoint is very useful for getting the mint list for NFT Collections.
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.getAssetsByGroup({
   groupKey: "collection",
   groupValue: "J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w",
@@ -229,14 +237,14 @@ const response = await helius.rpc.getAssetsByGroup({
 console.log(response.items);
 ```
 
-### **getAssetsByCreator**
+### getAssetsByCreator()
 
 Get a list of assets created by an address.
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.getAssetsByCreator({
   creatorAddress: "D3XrkNZz6wx6cofot7Zohsf2KSsu2ArngNk8VqU9cTY3",
   onlyVerified: true,
@@ -245,14 +253,14 @@ const response = await helius.rpc.getAssetsByCreator({
 console.log(response.items);
 ```
 
-### **getAssetsByAuthority**
+### getAssetsByAuthority()
 
 Get a list of assets with a specific authority.
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.rpc.getAssetsByAuthority({
   authorityAddress: "2RtGg6fsFiiF1EQzHqbd66AhW7R5bWeQGpTbv2UMkCdW",
   page: 1,
@@ -264,13 +272,15 @@ console.log(response.items);
 
 To read more about the easiest way to mint cNFTs on Solana, see [our docs](https://docs.helius.dev/compression-and-das-api/mint-api).
 
+### mintCompressedNft()
+
 To mint a compressed NFT, simply call the `mintCompressedNft` method and pass in your NFT data. [This](https://xray.helius.xyz/token/UJA7Dguu6VeG3W73AyaDYQiPR9Jw9vx3XXi6CYrN224?network=mainnet) is what the mint will look like in the explorer.
 
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.mintCompressedNft({
   name: "Exodia the Forbidden One",
   symbol: "ETFO",
@@ -308,7 +318,7 @@ If you want the SDK to handle the image upload, you can do so by passing in the 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 const response = await helius.mintCompressedNft({
   name: "Aggron",
   symbol: "AGNFT",
@@ -331,6 +341,8 @@ const response = await helius.mintCompressedNft({
 });
 ```
 
+### delegateCollectionAuthority()
+
 If you want to mint your cNFT to a collection:
 
 - Delegate Helius as a collection authority (using `DelegateCollectionAuthority` method), so that Helius can mint to that collection on your behalf.
@@ -340,7 +352,7 @@ If you want to mint your cNFT to a collection:
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("HELIUS_API_KEY");
+const helius = new Helius("YOUR_API_KEY");
 
 // 1. Delegate Helius as a collection authority
 await helius.delegateCollectionAuthority({
@@ -376,7 +388,7 @@ await helius.revokeCollectionAuthority({
   revokeAuthorityKeypair: revokeAuthorityKeypair,
 });
 ```
-### **Indexed Mintlists**
+### getMintlist()
 
 To get all the tokens for an NFT collection:
 
@@ -386,7 +398,7 @@ import {
   Collections,
 } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 const mints = helius.getMintlist({
   query: Collections.ABC,
@@ -395,7 +407,7 @@ const mints = helius.getMintlist({
 
 ## **Webhooks**
 
-Helius webhooks are the perfect way of building event driven systems on Solana.
+Helius webhooks are the perfect way of building event-driven systems on Solana.
 
 Simply select the transaction type(s) to detect, the accounts to watch, and the webhook handler.
 
@@ -405,7 +417,7 @@ We've parsed over 100 transaction types (including NFT Sales, NFT Listings, and 
 
 For a quick demo video, please see the [Webhook docs.](https://docs.helius.dev/webhooks/webhooks-summary)
 
-### **Create Webhook**
+### createWebhook()
 
 > **Note**: You can use enum `WebhookType` to specify between raw, discord, or enhanced webhooks! The default type is "enhanced".
 
@@ -419,7 +431,7 @@ import {
   Helius,
 } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.createWebhook({
   accountAddresses: [Address.MAGIC_EDEN_V2],
@@ -439,7 +451,7 @@ import {
   Helius,
 } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.createWebhook({
   accountAddresses: [Address.MAGIC_EDEN_V2],
@@ -452,14 +464,14 @@ helius.createWebhook({
 
 For Discord webhooks, simply use enum `WebhookType.DISCORD`.
 
-### **Edit Webhook**
+### editWebhook()
 
 You can also edit your webhooks. A common use case is dynamically adding/removing accounts to watch in a webhook:
 
 ```ts
 import { Helius, Address } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.editWebhook(
   "your-webhook-id-here",
@@ -469,13 +481,15 @@ helius.editWebhook(
 
 > **Very important**: The `editWebhook` method will completely overwrite the existing values for the field(s) that you inputted. Make sure to fetch the existing webhook and merge the values to avoid this.
 
+### appendAddressesToWebhook()
+
 <br />
 For convenience, we've added a method to let you simply append new addresses to an existing webhook:
 
 ```ts
 import { Helius, Address } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.appendAddressesToWebhook("your-webhook-id-here", [
   Address.SQUADS,
@@ -483,37 +497,37 @@ helius.appendAddressesToWebhook("your-webhook-id-here", [
 ]);
 ```
 
-### **Get All Webhooks**
+### getAllWebhooks()
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.getAllWebhooks();
 ```
 
-### **Get A Single Webhook**
+### getWebhookByID()
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.getWebhookByID("<webhook-id-here>");
 ```
 
-### **Delete a Webhook**
+### deleteWebhook()
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.deleteWebhook("<webhook-id-here>"); // returns a boolean
 ```
 
-### **Collection Webhooks!**
+### createCollectionWebhook()
 
 ```ts
 import {
@@ -522,7 +536,7 @@ import {
   Helius,
 } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 helius.createCollectionWebhook({
   collectionQuery: Collections.ABC,
@@ -556,22 +570,22 @@ const getBlockHeight = async () => {
 getBlockHeight();
 ```
 
-### getCurrentTPS
+### getCurrentTPS()
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 const tps = await helius.rpc.getCurrentTPS();
 ```
 
-### airdrop
+### airdrop()
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 const response = await helius.rpc.airdrop(
   new PublicKey("<wallet address>"),
@@ -579,22 +593,22 @@ const response = await helius.rpc.airdrop(
 ); // 1 sol
 ```
 
-### getStakeAccounts
+### getStakeAccounts()
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 const response = await helius.rpc.getStakeAccounts("<wallet address>");
 ```
 
-### getTokenHolders
+### getTokenHolders()
 
 ```ts
 import { Helius } from "helius-sdk";
 
-const helius = new Helius("<your-api-key-here>");
+const helius = new Helius("YOUR_API_KEY");
 
 const response = await helius.rpc.getTokenHolders("<token mint address>");
 ```
