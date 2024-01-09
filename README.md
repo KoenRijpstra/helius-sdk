@@ -43,6 +43,8 @@ const getAssetsByOwner = async () => {
 getAssetsByOwner();
 ```
 
+[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/helius-node-js-sdk?file=index.js&view=editor)
+
 ## Handling errors
 
 When the API returns a non-success status code (4xx or 5xx response), an error message will be thrown:
@@ -95,9 +97,8 @@ Central hub for managing Compressed NFT minting, authority assignments, and coll
 
 - [`getMintlist()`](#getMintlist): Access the list of mintable NFTs.
 - [`mintCompressedNft()`](#mintCompressedNft): Mint a new compressed NFT. 
-- [`mintApiAuthority()`](#mintApiAuthority): Assign authority for NFT minting.
 - [`delegateCollectionAuthority()`](#delegateCollectionAuthority): Delegate authority over a collection.
-- [`revokeCollectionAuthority()`](#revokeCollectionAuthority): Revoke delegated authority from a collection.
+- [`revokeCollectionAuthority()`](#delegateCollectionAuthority): Revoke delegated authority from a collection.
 
 [**Webhooks**](#webhooks)
 
@@ -341,7 +342,7 @@ const response = await helius.mintCompressedNft({
 });
 ```
 
-### delegateCollectionAuthority()
+### delegateCollectionAuthority() and revokeCollectionAuthority()
 
 If you want to mint your cNFT to a collection:
 
@@ -546,7 +547,7 @@ helius.createCollectionWebhook({
 });
 ```
 
-Note that the Collections.ABC enum references the collection query for this collection. It is just a convenience enum so that developers don't have to figure out whether to use firstVerifiedCreator or the Metaplex Certified Collection address ([see more about this here](https://docs.helius.dev/api-reference/nft-collections-on-solana)). If you already know it for your collection, please make a PR :)
+Note that the Collections.ABC enum references the collection query for this collection. It is just a convenience enum so that developers don't have to figure out whether to use firstVerifiedCreator or the Metaplex Certified Collection address. If you already know it for your collection, please make a PR.
 
 ## Helper methods
 
