@@ -14,13 +14,13 @@ API reference documentation is available at [docs.helius.dev](https://docs.heliu
 Using npm:
 
 ```shell
-$ npm install helius-sdk
+npm install helius-sdk
 ```
 
 Using yarn:
 
 ```shell
-$ yarn add helius-sdk
+yarn add helius-sdk
 ```
 
 ## Usage
@@ -71,23 +71,23 @@ When working with the Helius SDK, you may encounter several error codes. Below i
 
 If you encounter any of these errors, refer to the Helius documentation for further guidance, or reach out to the Helius support team for more detailed assistance.
 
+
 ## Using the Helius SDK
 
 The Helius SDK is a comprehensive toolset designed to simplify development on the Solana blockchain. It supports a range of namespaces, each tailored to specific functionalities within the Solana ecosystem and Helius services.
 
-### DAS (Digital Asset Standard)
+[**DAS Digital Asset Standard**](#das-digital-asset-standard)
+  - [`getAsset()`](#getAsset) : Retrieve information about a specific digital asset.
+  - [`getAssetBatch()`](#getAssetBatch) : Fetch data for multiple assets simultaneously.
+  - [`getSignaturesForAsset()`](#getSignaturesForAsset) : Obtain transaction signatures related to a particular asset.
+  - [`searchAssets()`](#searchAssets) : Enables searching for assets based on various criteria.
+  - [`getAssetProof()`](#getAssetProof) : Get proof of authenticity or ownership for an asset.
+  - [`getAssetsByOwner()`](#getAssetsByOwner) : List assets owned by a specific wallet or entity.
+  - [`getAssetsByGroup()`](#getAssetsByGroup) : Find assets belonging to a certain group.
+  - [`getAssetsByCreator()`](#getAssetsByCreator) : Access assets created by a specific user or entity.
+  - [`getAssetsByAuthority()`](#getAssetsByAuthority) : Identify assets under a specific authority.
 
-- [`getAsset()`](#getAsset) : Retrieve information about a specific digital asset.
-- [`getAssetBatch()`](#getAssetBatch) : Fetch data for multiple assets simultaneously.
-- [`getSignaturesForAsset()`](#getSignaturesForAsset) : Obtain transaction signatures related to a particular asset.
-- [`searchAssets()`](#searchAssets) : Enables searching for assets based on various criteria.
-- [`getAssetProof()`](#getAssetProof) : Get proof of authenticity or ownership for an asset.
-- [`getAssetsByOwner()`](#getAssetsByOwner) : List assets owned by a specific wallet or entity.
-- [`getAssetsByGroup()`](#getAssetsByGroup) : Find assets belonging to a certain group.
-- [`getAssetsByCreator()`](#getAssetsByCreator) : Access assets created by a specific user or entity.
-- [`getAssetsByAuthority()`](#getAssetsByAuthority) : Identify assets under a specific authority.
-
-### Mint
+[**Mint**](#mint)
 
 - [`getMintlist()`](#getMintlist) : Access the list of mintable NFTs.
 - [`mintCompressedNft()`](#mintCompressedNft) : Mint a new compressed NFT. 
@@ -95,7 +95,7 @@ The Helius SDK is a comprehensive toolset designed to simplify development on th
 - [`delegateCollectionAuthority()`](#delegateCollectionAuthority) : Delegate authority over a collection.
 - [`revokeCollectionAuthority()`](#revokeCollectionAuthority) : Revoke delegated authority from a collection.
 
-### Webhooks
+[**Webhooks**](#webhooks)
 
 - [`createWebhook()`](#createWebhook) : Set up a new webhook for event tracking.
 - [`editWebhook()`](#editWebhook) : Modify the settings of an existing webhook.
@@ -104,13 +104,13 @@ The Helius SDK is a comprehensive toolset designed to simplify development on th
 - [`getAllWebhooks()`](#getAllWebhooks) : List all configured webhooks.
 - [`createCollectionWebhook()`](#createCollectionWebhook) : Establish a webhook specifically for a collection.
 
-### Helper methods
+[**Helper methods**](#helper-methods)
 
-- [`connection`](#connection) : Analyze the transactions per second on the Solana blockchain.
-- [`getCurrentTPS`](#getCurrentTPS) : Analyze the transactions per second on the Solana blockchain.
-- [`airdrop`](#airdrop) : Facilitate airdropping Solana devnet tokens.
-- [`getStakeAccounts`](#getStakeAccounts) : Retrieve information on Solana stake accounts.
-- [`getTokenHolders`](#getTokenHolders) : Identify holders of specific SPL tokens.
+- [`connection`](#connection) : Incorporates all commonly-used methods from Solana-Web3.js
+- [`getCurrentTPS()`](#getCurrentTPS) : Analyze the transactions per second on the Solana blockchain.
+- [`airdrop()`](#airdrop) : Facilitate airdropping Solana devnet tokens.
+- [`getStakeAccounts()`](#getStakeAccounts) : Retrieve information on Solana stake accounts.
+- [`getTokenHolders()`](#getTokenHolders) : Identify holders of specific SPL tokens.
 
 ## DAS (Digital Asset Standard)
 
@@ -118,7 +118,7 @@ Read more about the DAS API from our docs, [here](https://docs.helius.dev/solana
 
 Namespace: `helius.rpc`
 
-### **getAsset**
+### getAsset()
 
 Get an asset by its ID.
 
